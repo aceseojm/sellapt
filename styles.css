@@ -392,17 +392,22 @@ a {
 }
 
 .lead-form input,
-.consultation-form input {
+.consultation-form input,
+.lead-form select,
+.consultation-form select {
   width: 100%;
   padding: 16px 18px;
   border: 1px solid rgba(19, 50, 71, 0.12);
   border-radius: 14px;
   background: #fff;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
 }
 
 .lead-form input:focus,
-.consultation-form input:focus {
+.consultation-form input:focus,
+.lead-form select:focus,
+.consultation-form select:focus {
   outline: none;
   border-color: var(--teal);
   box-shadow: 0 0 0 4px rgba(14, 123, 133, 0.12);
@@ -442,6 +447,45 @@ a {
 .impact-band {
   width: 100%;
   padding: 18px 0 8px;
+}
+
+.promise-band {
+  padding-top: 14px;
+}
+
+.promise-card {
+  display: grid;
+  gap: 14px;
+  padding: 24px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(19, 50, 71, 0.94), rgba(123, 77, 255, 0.88), rgba(255, 79, 179, 0.84));
+  box-shadow: var(--shadow-soft);
+  color: #fff;
+}
+
+.promise-card strong {
+  font-size: 1.25rem;
+}
+
+.promise-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.8;
+}
+
+.promise-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.promise-points span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .impact-band__inner {
@@ -510,9 +554,11 @@ a {
 
 .story-intro,
 .feature-canvas,
+.brochure-feature,
 .panorama,
 .future-grid,
 .project-overview,
+.highlight-board,
 .plans,
 .asset-archive,
 .closing {
@@ -695,6 +741,70 @@ a {
 
 .future-road-copy {
   padding: 28px;
+}
+
+.brochure-grid,
+.highlight-board-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.brochure-figure,
+.highlight-board-main,
+.highlight-board-side {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+.brochure-figure img,
+.highlight-board-main img,
+.highlight-board-side img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.brochure-copy {
+  padding: 12px 8px 12px 4px;
+}
+
+.brochure-copy h2 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  background: linear-gradient(120deg, #6037ff, #ff55b8, #c286ff, #ff77c8);
+  background-size: 240% 240%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: flowingGradient 10s ease-in-out infinite;
+}
+
+.selling-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 20px 0 24px;
+  list-style: none;
+}
+
+.selling-list li {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-soft);
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.highlight-board-main img,
+.highlight-board-side img {
+  aspect-ratio: 16 / 10;
 }
 
 .project-overview .overview-grid {
@@ -1096,6 +1206,8 @@ body.modal-open {
   .future-board,
   .closing-card,
   .panorama,
+  .brochure-grid,
+  .highlight-board-grid,
   .project-overview .overview-grid,
   .plan-showcase-card,
   .plan-showcase-card.reverse,
@@ -1141,9 +1253,11 @@ body.modal-open {
   .hero-shell,
   .story-intro,
   .feature-canvas,
+  .brochure-feature,
   .panorama,
   .future-grid,
   .project-overview,
+  .highlight-board,
   .plans,
   .asset-archive,
   .closing {
@@ -1165,6 +1279,14 @@ body.modal-open {
   .asset-archive .archive-masonry,
   .project-overview .overview-grid {
     grid-template-columns: 1fr;
+  }
+
+  .promise-card {
+    padding: 20px;
+  }
+
+  .brochure-copy h2 {
+    max-width: none;
   }
 
   .section-heading.split,

@@ -134,6 +134,7 @@ async function submitLeadForm(form) {
   const formData = new FormData(form);
   const name = String(formData.get("name") || "").trim();
   const phone = normalizePhone(String(formData.get("phone") || ""));
+  const interestType = String(formData.get("interestType") || "").trim();
 
   if (name.length < 2) {
     setStatus(form, "성함을 다시 확인해주세요.", true);
@@ -142,6 +143,11 @@ async function submitLeadForm(form) {
 
   if (!(phone.length === 10 || phone.length === 11)) {
     setStatus(form, "연락처를 다시 확인해주세요.", true);
+    return;
+  }
+
+  if (!interestType) {
+    setStatus(form, "관심 평형을 선택해주세요.", true);
     return;
   }
 
@@ -165,7 +171,8 @@ async function submitLeadForm(form) {
     content: new URLSearchParams(window.location.search).get("utm_content") || "",
     term: new URLSearchParams(window.location.search).get("utm_term") || "",
     device: detectDevice(),
-    memo: "상담 연결 요청",
+    interestType,
+    memo: `${interestType} 관심 고객 상담 연결 요청`,
     privacyConsent: true
   };
 
@@ -196,8 +203,8 @@ async function submitLeadForm(form) {
     }
 
     form.reset();
-    setStatus(form, "접수가 완료되었습니다. 빠르게 연락드리겠습니다.");
-    showToast("접수가 완료되었습니다. 빠르게 연락드리겠습니다.");
+    setStatus(form, "접수가 완료되었습니다. 관심 평형 자료를 빠르게 안내드리겠습니다.");
+    showToast("접수가 완료되었습니다. 관심 평형 자료를 빠르게 안내드리겠습니다.");
 
     trackEvent("lead_submit_success", {
       page_name: payload.pageName,
@@ -225,7 +232,9 @@ async function submitLeadForm(form) {
   } finally {
     if (submitButton) {
       submitButton.disabled = false;
-      submitButton.textContent = "상담 연결";
+      submitButton.textContent = submitButton.closest(".modal-form")
+        ? "안심 문자 분양가 조회하기"
+        : "안심 문자 분양가 조회하기";
     }
   }
 }
