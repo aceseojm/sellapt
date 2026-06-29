@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://aceseojm.github.io/sitemap.xml
